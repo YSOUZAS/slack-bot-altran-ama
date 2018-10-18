@@ -10,35 +10,30 @@ const bot = new SlackBot({
 });
 
 // Start Handler
-bot.on('start', () => {
-    bot.postMessageToChannel(
-        'test-bot',
-        'Rodando no heroku @ysouzas',
-    );
+bot.on('start', async () => {
 
-    new CronJob('00 00 09 * * *', () => {
-        bot.postMessageToChannel(
-            'test-bot',
-            'Bom Dia Malta',
-        );
-    }, null, true, 'Europe/Lisbon');
+    bot.on('message', async data => {
+        if (data.type !== 'message') {
+            return;
+        }
 
-    new CronJob('00 00 14 * * *', () => {
-        bot.postMessageToChannel(
-            'test-bot',
-            'Boa Tarde Malta',
-        );
-    }, null, true, 'Europe/Lisbon');
+        const user = await bot.getUserById(data.user);
+        const channel = await bot.getChannelById(data.channel);
 
-    new CronJob('00 00 19 * * *', () => {
-        bot.postMessageToChannel(
-            'test-bot',
-            'Boa Noite Malta',
-        );
-    }, null, true, 'Europe/Lisbon');
+        if (user) {
+            console.log(channel)
+            console.log(user.profile.real_name_normalized);
+            const message = data.text;
+
+            if (message.toLowerCase().includes('boa noite'))
+                bot.postMessageToChannel(channel.name, `Boa Noite, ${user.profile.real_name_normalized}`)
+            if (message.toLowerCase().includes('bom dia'))
+                bot.postMessageToChannel(channel.name, `Bom Dia, ${user.profile.real_name_normalized}`)
+            if (message.toLowerCase().includes('boa tarde'))
+                bot.postMessageToChannel(channel.name, `Boa Tarde, ${user.profile.real_name_normalized}`)
+
+        }
+    });
+
 });
-
-
-
-
 
