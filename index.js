@@ -1,5 +1,7 @@
 const SlackBot = require('slackbots');
 const CronJob = require('cron').CronJob;
+const messageService = require('./Services/message-service');
+
 require('dotenv').config();
 
 const bot = new SlackBot({
@@ -9,36 +11,26 @@ const bot = new SlackBot({
 
 // Start Handler
 bot.on('start', async () => {
-  bot.postMessageToChannel('test-bot', `to na area`);
+  bot.postMessageToChannel('test-bot', `To Vivão`);
 });
 
+/**bot.on('start', async () => {
+    bot.postMessageToChannel('test-bot', `<@UD68YKDCY> e ai?`);
+  });
+  
+  bot.on('message', async data => {
+    console.log(data);
+  });
+   */
+
 bot.on('message', async data => {
-  if (data.type !== 'message') {
-    return;
-  }
+  if (data.type == 'message') {
+    const user = await bot.getUserById(data.user);
+    const channel = await bot.getChannelById(data.channel);
 
-  const user = await bot.getUserById(data.user);
-  const channel = await bot.getChannelById(data.channel);
-
-  if (user) {
-    console.log(channel);
-    console.log(user.profile.real_name_normalized);
-    const message = data.text;
-
-    if (message.toLowerCase().includes('boa noite'))
-      bot.postMessageToChannel(
-        channel.name,
-        `Boa Noite, ${user.profile.real_name_normalized}`
-      );
-    if (message.toLowerCase().includes('bom dia'))
-      bot.postMessageToChannel(
-        channel.name,
-        `Bom Dia, ${user.profile.real_name_normalized}`
-      );
-    if (message.toLowerCase().includes('boa tarde'))
-      bot.postMessageToChannel(
-        channel.name,
-        `Boa Tarde, ${user.profile.real_name_normalized}`
-      );
+    if (user) {
+      const message = data.text;
+      messageService.identificaMensagem(bot, message, user, channel);
+    }
   }
 });
