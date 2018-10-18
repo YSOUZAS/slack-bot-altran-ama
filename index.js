@@ -12,6 +12,8 @@ const bot = new SlackBot({
 // Start Handler
 bot.on('start', async () => {
 
+    bot.postMessageToChannel("test-bot", `to na area`)
+
     bot.on('message', async data => {
         if (data.type !== 'message') {
             return;
@@ -31,7 +33,6 @@ bot.on('start', async () => {
                 bot.postMessageToChannel(channel.name, `Bom Dia, ${user.profile.real_name_normalized}`)
             if (message.toLowerCase().includes('boa tarde'))
                 bot.postMessageToChannel(channel.name, `Boa Tarde, ${user.profile.real_name_normalized}`)
-
         }
     });
 
