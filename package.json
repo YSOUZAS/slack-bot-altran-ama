@@ -4,7 +4,8 @@
   "description": "Slack bot for Altran/Ama Workspace",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,10 @@
     "dotenv": "^6.1.0",
     "node-cron": "^2.0.3",
     "slackbots": "^1.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
   }
 }
