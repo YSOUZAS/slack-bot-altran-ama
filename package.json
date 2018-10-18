@@ -1,0 +1,26 @@
+{
+  "name": "slack-bot-altran-ama",
+  "version": "0.0.1",
+  "description": "Slack bot for Altran/Ama Workspace",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YSOUZAS/slack-bot-altran-ama.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YSOUZAS/slack-bot-altran-ama/issues"
+  },
+  "homepage": "https://github.com/YSOUZAS/slack-bot-altran-ama#readme",
+  "dependencies": {
+    "@slack/client": "^4.8.0",
+    "cron": "^1.4.1",
+    "dotenv": "^6.1.0",
+    "node-cron": "^2.0.3",
+    "slackbots": "^1.2.0"
+  }
+}
