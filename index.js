@@ -1,6 +1,7 @@
 const SlackBot = require('slackbots');
 const CronJob = require('cron').CronJob;
 const messageService = require('./Services/message-service');
+const { version } = require('./package.json');
 
 require('dotenv').config();
 
@@ -11,17 +12,14 @@ const bot = new SlackBot({
 
 // Start Handler
 bot.on('start', async () => {
-  bot.postMessageToChannel('test-bot', `To Vivão`);
+  if (process.env.NODE_ENV !== 'production')
+    bot.postMessageToChannel('test-bot', `To Vivão`);
+  if (process.env.NODE_ENV === 'production')
+    bot.postMessageToChannel(
+      'general',
+      `Malta, agora estou na versão ${version}`
+    );
 });
-
-/**bot.on('start', async () => {
-    bot.postMessageToChannel('test-bot', `<@UD68YKDCY> e ai?`);
-  });
-  
-  bot.on('message', async data => {
-    console.log(data);
-  });
-   */
 
 bot.on('message', async data => {
   if (data.type == 'message') {
