@@ -1,6 +1,8 @@
 const SlackBot = require('slackbots');
 const messageService = require('./Services/message-service');
 const notificationService = require('./Services/notification-service');
+const scheduleService = require('./Services/schedule-service');
+
 
 const { version } = require('./package.json');
 
@@ -13,14 +15,20 @@ const bot = new SlackBot({
 
 // Start Handler
 bot.on('start', async () => {
-  if (process.env.NODE_ENV !== 'production') { bot.postMessageToChannel('test-bot', 'To Vivão'); }
+  if (process.env.NODE_ENV !== 'production') {
+    bot.postMessageToChannel('test-bot', '<!here|here>');
+  }
   if (process.env.NODE_ENV === 'production') {
     bot.postMessageToChannel(
       'general',
       `Malta, agora estou na versão ${version}`,
     );
   }
+  scheduleService.agendaPequenoAlmoco(bot);
+  scheduleService.agendaAlmoco(bot);
+  scheduleService.agendaSextaNoite(bot);
 });
+
 
 bot.on('message', async (data) => {
   if (data.type === 'message') {
@@ -40,3 +48,4 @@ bot.on('message', async (data) => {
     notificationService.identificaNotification(bot, message, channel);
   }
 });
+
