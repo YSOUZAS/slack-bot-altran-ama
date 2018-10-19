@@ -1,6 +1,6 @@
 {
   "name": "slack-bot-altran-ama",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Slack bot for Altran/Ama Workspace",
   "main": "index.js",
   "scripts": {
