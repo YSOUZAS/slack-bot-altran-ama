@@ -1,7 +1,6 @@
 const messageController = require('../Controllers/message-controller');
 
 exports.identificaMensagem = async (bot, message, user, channel) => {
-
   if (message.toLowerCase().includes('bom dia')) {
     messageController.enviaMensagem(bot, 'Bom dia', user, channel);
   }
