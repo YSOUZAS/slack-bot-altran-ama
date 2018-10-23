@@ -1,6 +1,6 @@
 {
   "name": "slack-bot-altran-ama",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Slack bot for Altran/Ama Workspace",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "jsdoc": "^3.5.5",
     "nodemon": "^1.18.4"
   }
 }
