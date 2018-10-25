@@ -12,12 +12,12 @@ exports.identificaMensagem = async (bot, message, user, channel) => {
   if (message.toLowerCase().includes('boa noite')) {
     messageController.enviaMensagem(bot, 'Boa noite', user, channel);
   }
-  if (message.toLowerCase().includes('Hello')) {
+  if (message.toLowerCase().includes('hello')) {
     messageController.enviaMensagem(bot, 'Hello', user, channel);
   }
   if (
-    message.toLowerCase().includes('Bom fim-de-semana') ||
-    message.toLowerCase().includes('Bom fim de semana')
+    message.toLowerCase().includes('bom fim-de-semana') ||
+    message.toLowerCase().includes('bom fim de semana')
   ) {
     messageController.enviaMensagem(bot, 'Bom fim de semana', user, channel);
   }
